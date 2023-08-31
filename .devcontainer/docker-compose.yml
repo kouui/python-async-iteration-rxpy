@@ -1,0 +1,30 @@
+version: '1'
+services:
+  devsrv:
+    image: "${IMAGE_NAME}"
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        UID: "${USER_ID}"
+        USER: "${USER_NAME}"
+        GID: "${GROUP_ID}"
+        GROUP: "${GROUP_NAME}"
+        PASSWORD: "${PASSWORD}"
+        WORK_DIR: "${WORK_DIR}"
+        PYVER: "${PYVER}"
+        GIT_USER: "${GIT_USER}"
+        GIT_EMAIL: "${GIT_EMAIL}"
+    container_name: "${CONTAINER_NAME}"
+    deploy:
+      resources:
+        limits:
+          cpus: '${NCPU}'
+    #command: ["fish"]
+    tty: true
+    #restart: always
+    #command: sleep infinity
+    volumes:
+      - type: bind
+        source: ..
+        target: /home/${USER_NAME}/${WORK_DIR}

@@ -1,0 +1,3 @@
+reactivex
+#rx==3.2.0
+aiohttp==3.8.5
